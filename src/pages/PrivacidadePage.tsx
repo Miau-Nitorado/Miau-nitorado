@@ -19,8 +19,8 @@ export default function PrivacidadePage() {
     },
     {
       icon: Lock,
-      title: 'Autenticação simulada',
-      desc: 'A versão atual utiliza autenticação simulada armazenada localmente no seu navegador. Não há servidor processando senhas. Em uma versão futura com backend, a autenticação será feita com padrões de segurança adequados.',
+      title: 'Autenticação com JWT',
+      desc: 'O cadastro e o login são processados pela API do Miau Nitorado. As senhas são gravadas apenas como hash BCrypt — nunca em texto puro — e o acesso é autenticado por token JWT com validade limitada. Seu navegador guarda somente o token da sessão.',
     },
   ];
 

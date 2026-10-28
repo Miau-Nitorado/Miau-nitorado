@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="MiauNitorado.API/MiauNitorado.API.csproj" />
+  <Project Path="MiauNitorado.Application/MiauNitorado.Application.csproj" />
+  <Project Path="MiauNitorado.Domain/MiauNitorado.Domain.csproj" />
+  <Project Path="MiauNitorado.Infrastructure/MiauNitorado.Infrastructure.csproj" />
+</Solution>

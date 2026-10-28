@@ -1,17 +1,19 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "miau-nitorado",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:api": "dotnet run --project backend/MiauNitorado.API",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "start": "vite build && dotnet run --project backend/MiauNitorado.API",
+    "publish:app": "vite build && dotnet publish backend/MiauNitorado.API -c Release -o publish"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.57.4",
     "lucide-react": "^0.446.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

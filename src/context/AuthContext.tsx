@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
 import type { AuthUser } from '@/types';
 import * as authService from '@/services/authService';
 
@@ -14,8 +14,26 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  // Estado inicial vem do cache local para o app já renderizar logado.
   const [user, setUser] = useState<AuthUser | null>(() => authService.getCurrentUser());
   const [isLoading, setIsLoading] = useState(false);
+
+  // Revalida a sessão contra a API: derruba o login se o JWT expirou
+  // e traz nome/telefone atualizados caso tenham mudado.
+  useEffect(() => {
+    if (!user) return;
+
+    let ativo = true;
+    authService.refreshCurrentUser().then((atualizado) => {
+      if (ativo) setUser(atualizado);
+    });
+
+    return () => {
+      ativo = false;
+    };
+    // Executa apenas na montagem — revalidação de sessão.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const login = useCallback(async (email: string, password: string) => {
     setIsLoading(true);
