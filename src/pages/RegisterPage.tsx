@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { PawPrint, UserPlus, AlertCircle } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
+import { validatePassword, validatePhone } from '@/utils';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
@@ -24,10 +25,23 @@ export default function RegisterPage() {
       setError('Preencha todos os campos obrigatórios.');
       return;
     }
-    if (password.length < 6) {
-      setError('A senha deve ter ao menos 6 caracteres.');
+    if (name.trim().length < 3) {
+      setError('O nome deve ter ao menos 3 caracteres.');
       return;
     }
+
+    const erroTelefone = validatePhone(phone);
+    if (erroTelefone) {
+      setError(erroTelefone);
+      return;
+    }
+
+    const erroSenha = validatePassword(password);
+    if (erroSenha) {
+      setError(erroSenha);
+      return;
+    }
+
     if (password !== confirmPassword) {
       setError('As senhas não coincidem.');
       return;
@@ -65,8 +79,13 @@ export default function RegisterPage() {
         <Input label="Nome completo" required value={name} onChange={(e) => setName(e.target.value)} placeholder="Seu nome" />
         <Input label="E-mail" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="seu@email.com" />
         <Input label="Telefone" required value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="(12) 99999-9999" />
-        <Input label="Senha" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mínimo 6 caracteres" />
+        <Input label="Senha" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mín. 8 caracteres" />
         <Input label="Confirmar senha" type="password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Repita a senha" />
+
+        <p className="text-xs text-gray-500">
+          A senha precisa ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula,
+          número e um caractere especial (!@#$%^&amp;*).
+        </p>
 
         <Button type="submit" fullWidth disabled={loading}>
           <UserPlus size={18} /> {loading ? 'Criando...' : 'Criar conta'}
@@ -79,10 +98,6 @@ export default function RegisterPage() {
           </Link>
         </p>
       </form>
-
-      <p className="text-center text-xs text-gray-400 mt-4">
-        Autenticação simulada para demonstração. Os dados ficam apenas no seu navegador.
-      </p>
     </div>
   );
 }

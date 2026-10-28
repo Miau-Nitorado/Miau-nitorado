@@ -1,0 +1,24 @@
+# Node / Vite
+node_modules/
+dist/
+*.local
+
+# Build do front publicado no wwwroot da API
+backend/MiauNitorado.API/wwwroot/
+
+# Publish da API
+publish/
+
+# .NET
+bin/
+obj/
+*.user
+
+# Visual Studio / VS Code
+.vs/
+.idea/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

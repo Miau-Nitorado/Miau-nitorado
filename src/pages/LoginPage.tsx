@@ -77,10 +77,6 @@ export default function LoginPage() {
           </Link>
         </p>
       </form>
-
-      <p className="text-center text-xs text-gray-400 mt-4">
-        Autenticação simulada para demonstração. Os dados ficam apenas no seu navegador.
-      </p>
     </div>
   );
 }

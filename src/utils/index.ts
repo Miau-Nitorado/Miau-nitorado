@@ -70,3 +70,32 @@ export function matchesSearch(
   ];
   return fields.some((f) => f.toLowerCase().includes(t));
 }
+
+/**
+ * Valida a senha com as mesmas regras do back-end
+ * (MiauNitorado.Application/Validador/UsuariosValidadores/CadastroUsuarioValidator.cs).
+ * Retorna a mensagem do primeiro problema encontrado, ou null se estiver ok.
+ */
+export function validatePassword(password: string): string | null {
+  if (password.length < 8) return 'A senha deve ter no mínimo 8 caracteres.';
+  if (password.length > 128) return 'A senha deve ter no máximo 128 caracteres.';
+  if (!/[A-Z]/.test(password)) return 'A senha deve conter ao menos uma letra maiúscula.';
+  if (!/[a-z]/.test(password)) return 'A senha deve conter ao menos uma letra minúscula.';
+  if (!/[0-9]/.test(password)) return 'A senha deve conter ao menos um número.';
+  if (!/[!@#$%^&*]/.test(password)) {
+    return 'A senha deve conter ao menos um caractere especial (!@#$%^&*).';
+  }
+  return null;
+}
+
+/**
+ * Valida o telefone pela quantidade de dígitos (10 com DDD fixo, 11 com celular),
+ * aceitando máscara — espelha a regra do back-end.
+ */
+export function validatePhone(phone: string): string | null {
+  const digitos = phone.replace(/\D/g, '').length;
+  if (digitos !== 10 && digitos !== 11) {
+    return 'Informe o telefone com DDD (10 ou 11 dígitos).';
+  }
+  return null;
+}
