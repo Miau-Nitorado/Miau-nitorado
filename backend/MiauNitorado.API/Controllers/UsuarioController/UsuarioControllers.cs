@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using MiauNitorado.API.Extensions;
 using MiauNitorado.Application.AplicationInterfaces.Usuarios;
 using MiauNitorado.Application.Dtos.UsuariosDtos;
-using System.Security.Claims;
 
 namespace MiauNitorado.API.Controllers.UsuarioController
 {
@@ -30,7 +30,7 @@ namespace MiauNitorado.API.Controllers.UsuarioController
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> ObterPerfil()
         {
-            var usuarioId = ObterUsuarioIdDoToken();
+            var usuarioId = User.ObterUsuarioId();
 
             if (usuarioId == null)
                 return Unauthorized(new { message = "Token inválido" });
@@ -56,7 +56,7 @@ namespace MiauNitorado.API.Controllers.UsuarioController
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> AtualizarPerfil([FromBody] AtualizarPerfil request)
         {
-            var usuarioId = ObterUsuarioIdDoToken();
+            var usuarioId = User.ObterUsuarioId();
 
             if (usuarioId == null)
                 return Unauthorized(new { message = "Token inválido" });
@@ -73,15 +73,5 @@ namespace MiauNitorado.API.Controllers.UsuarioController
             return Ok(perfil);
         }
 
-        /// <summary>
-        /// Lê a claim "UserId" gerada pelo TokenService.
-        /// </summary>
-        private int? ObterUsuarioIdDoToken()
-        {
-            var claim = User.FindFirst("UserId")?.Value
-                        ?? User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            return int.TryParse(claim, out var id) ? id : null;
-        }
     }
 }

@@ -1,3 +1,4 @@
+using MiauNitorado.Domain.Entidades.Ocorrencias;
 using MiauNitorado.Domain.Entidades.Usuarios;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,10 @@ namespace MiauNitorado.Infrastructure.Data.AppDBsContext
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+
+        public DbSet<Ocorrencia> Ocorrencias { get; set; }
+        public DbSet<Animal> Animais { get; set; }
+        public DbSet<Foto> Fotos { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -22,6 +22,162 @@ namespace MiauNitorado.Infrastructure.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Animal", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Caracteristicas")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("CaracteristicasParticulares")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<string>("Cor")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("DescricaoColeira")
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("Especie")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<string>("Idade")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Porte")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<bool>("PossuiColeira")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("PossuiMicrochip")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Raca")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Sexo")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Especie");
+
+                    b.HasIndex("Porte");
+
+                    b.ToTable("Animais", (string)null);
+                });
+
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Foto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Alt")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<Guid>("AnimalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Ordem")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalId", "Ordem");
+
+                    b.ToTable("Fotos", (string)null);
+                });
+
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Ocorrencia", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("AnimalId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("AtualizadoEm")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateOnly>("Data")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Descricao")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<TimeOnly>("Hora")
+                        .HasColumnType("time without time zone");
+
+                    b.Property<string>("InformacoesAdicionais")
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Tipo")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UsuarioId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnimalId")
+                        .IsUnique();
+
+                    b.HasIndex("CriadoEm");
+
+                    b.HasIndex("Data");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("Tipo");
+
+                    b.HasIndex("UsuarioId");
+
+                    b.ToTable("Ocorrencias", (string)null);
+                });
+
             modelBuilder.Entity("MiauNitorado.Domain.Entidades.Usuarios.Usuario", b =>
                 {
                     b.Property<int>("Id")
@@ -60,6 +216,111 @@ namespace MiauNitorado.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Usuarios", (string)null);
+                });
+
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Foto", b =>
+                {
+                    b.HasOne("MiauNitorado.Domain.Entidades.Ocorrencias.Animal", null)
+                        .WithMany("Fotos")
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Ocorrencia", b =>
+                {
+                    b.HasOne("MiauNitorado.Domain.Entidades.Ocorrencias.Animal", "Animal")
+                        .WithOne()
+                        .HasForeignKey("MiauNitorado.Domain.Entidades.Ocorrencias.Ocorrencia", "AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiauNitorado.Domain.Entidades.Usuarios.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.OwnsOne("MiauNitorado.Domain.Entidades.Ocorrencias.Contato", "Contato", b1 =>
+                        {
+                            b1.Property<Guid>("OcorrenciaId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Email")
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
+                                .HasColumnName("ContatoEmail");
+
+                            b1.Property<int>("MetodoPreferido")
+                                .HasColumnType("integer")
+                                .HasColumnName("ContatoMetodoPreferido");
+
+                            b1.Property<string>("Nome")
+                                .IsRequired()
+                                .HasMaxLength(150)
+                                .HasColumnType("character varying(150)")
+                                .HasColumnName("ContatoNome");
+
+                            b1.Property<string>("Telefone")
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("character varying(20)")
+                                .HasColumnName("ContatoTelefone");
+
+                            b1.HasKey("OcorrenciaId");
+
+                            b1.ToTable("Ocorrencias");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OcorrenciaId");
+                        });
+
+                    b.OwnsOne("MiauNitorado.Domain.Entidades.Ocorrencias.Localizacao", "Localizacao", b1 =>
+                        {
+                            b1.Property<Guid>("OcorrenciaId")
+                                .HasColumnType("uuid");
+
+                            b1.Property<string>("Bairro")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("Bairro");
+
+                            b1.Property<string>("Cidade")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("character varying(100)")
+                                .HasColumnName("Cidade");
+
+                            b1.Property<string>("Referencia")
+                                .HasMaxLength(200)
+                                .HasColumnType("character varying(200)")
+                                .HasColumnName("Referencia");
+
+                            b1.HasKey("OcorrenciaId");
+
+                            b1.HasIndex("Cidade");
+
+                            b1.ToTable("Ocorrencias");
+
+                            b1.WithOwner()
+                                .HasForeignKey("OcorrenciaId");
+                        });
+
+                    b.Navigation("Animal");
+
+                    b.Navigation("Contato")
+                        .IsRequired();
+
+                    b.Navigation("Localizacao")
+                        .IsRequired();
+
+                    b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("MiauNitorado.Domain.Entidades.Ocorrencias.Animal", b =>
+                {
+                    b.Navigation("Fotos");
                 });
 #pragma warning restore 612, 618
         }

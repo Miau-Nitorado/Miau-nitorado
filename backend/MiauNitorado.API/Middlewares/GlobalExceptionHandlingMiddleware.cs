@@ -1,5 +1,6 @@
 using System.Net;
 using FluentValidation;
+using MiauNitorado.Domain.Excecoes;
 
 namespace MiauNitorado.API.Middlewares
 {
@@ -39,6 +40,20 @@ namespace MiauNitorado.API.Middlewares
                     errors = errors
                 });
             }
+            catch (NaoEncontradoException ex)
+            {
+                await ResponderAsync(context, StatusCodes.Status404NotFound, ex.Message);
+            }
+            catch (AcessoNegadoException ex)
+            {
+                _logger.LogWarning(ex, "Acesso negado a recurso de outro usuário");
+                await ResponderAsync(context, StatusCodes.Status403Forbidden, ex.Message);
+            }
+            catch (RegraDeNegocioException ex)
+            {
+                _logger.LogInformation(ex, "Operação recusada por regra de negócio");
+                await ResponderAsync(context, StatusCodes.Status400BadRequest, ex.Message);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Erro não tratado");
@@ -51,6 +66,21 @@ namespace MiauNitorado.API.Middlewares
                     message = "Erro interno do servidor"
                 });
             }
+        }
+
+        /// <summary>
+        /// Resposta de erro no mesmo formato usado pelo restante da API.
+        /// </summary>
+        private static async Task ResponderAsync(HttpContext context, int statusCode, string message)
+        {
+            context.Response.StatusCode = statusCode;
+            context.Response.ContentType = "application/json";
+
+            await context.Response.WriteAsJsonAsync(new
+            {
+                statusCode,
+                message
+            });
         }
     }
 }
