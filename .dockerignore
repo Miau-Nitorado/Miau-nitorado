@@ -1,0 +1,13 @@
+.git
+.gitignore
+**/node_modules
+**/bin
+**/obj
+**/.vs
+**/.idea
+**/TestResults
+**/publish
+backend/MiauNitorado.API/wwwroot/*
+.env
+.env.*
+!.env.example
