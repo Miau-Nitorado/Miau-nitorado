@@ -25,5 +25,15 @@ namespace MiauNitorado.Application.AplicationInterfaces.Ocorrencias
         /// quando a transição de status não é permitida.
         /// </summary>
         Task<OcorrenciaDetalhe> AlterarStatusAsync(Guid id, AlterarStatusOcorrencia request, int usuarioId);
+
+        /// <summary>
+        /// Lança NaoEncontradoException se não existir e AcessoNegadoException
+        /// se o usuário autenticado não for o proprietário.
+        /// </summary>
+        Task ExcluirAsync(Guid id, int usuarioId);
+
+        Task<IReadOnlyList<OcorrenciaResumo>> ObterMinhasAsync(int usuarioId);
+
+        Task<IReadOnlyList<string>> ListarCidadesDisponiveisAsync();
     }
 }

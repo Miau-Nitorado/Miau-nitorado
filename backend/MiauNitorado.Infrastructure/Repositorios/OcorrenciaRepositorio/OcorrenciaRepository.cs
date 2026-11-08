@@ -170,5 +170,36 @@ namespace MiauNitorado.Infrastructure.Repositorios.OcorrenciaRepositorio
 
             return $"%{escapado}%";
         }
+
+        public async Task ExcluirAsync(Ocorrencia ocorrencia)
+        {
+            if (ocorrencia.Animal != null)
+            {
+                _context.Animais.Remove(ocorrencia.Animal);
+            }
+
+            _context.Ocorrencias.Remove(ocorrencia);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<IReadOnlyList<Ocorrencia>> ObterPorUsuarioAsync(int usuarioId)
+        {
+            return await ComAnimalEFotos(_context.Ocorrencias.AsNoTracking())
+                .Where(o => o.UsuarioId == usuarioId)
+                .OrderByDescending(o => o.CriadoEm)
+                .ThenByDescending(o => o.Id)
+                .ToListAsync();
+        }
+
+        public async Task<IReadOnlyList<string>> ListarCidadesDisponiveisAsync()
+        {
+            return await _context.Ocorrencias
+                .AsNoTracking()
+                .Where(o => !string.IsNullOrWhiteSpace(o.Localizacao.Cidade))
+                .Select(o => o.Localizacao.Cidade.Trim())
+                .Distinct()
+                .OrderBy(cidade => cidade)
+                .ToListAsync();
+        }
     }
 }

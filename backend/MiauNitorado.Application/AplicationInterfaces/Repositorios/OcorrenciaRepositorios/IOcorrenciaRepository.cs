@@ -18,5 +18,11 @@ namespace MiauNitorado.Application.AplicationInterfaces.Repositorios.OcorrenciaR
         Task<Ocorrencia> CriarAsync(Ocorrencia ocorrencia);
 
         Task<Ocorrencia> AtualizarAsync(Ocorrencia ocorrencia);
+
+        Task ExcluirAsync(Ocorrencia ocorrencia);
+
+        Task<IReadOnlyList<Ocorrencia>> ObterPorUsuarioAsync(int usuarioId);
+
+        Task<IReadOnlyList<string>> ListarCidadesDisponiveisAsync();
     }
 }

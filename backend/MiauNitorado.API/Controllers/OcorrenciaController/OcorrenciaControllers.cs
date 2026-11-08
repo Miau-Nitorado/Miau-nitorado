@@ -152,5 +152,66 @@ namespace MiauNitorado.API.Controllers.OcorrenciaController
 
             return Ok(ocorrencia);
         }
+    
+        /// <summary>
+        /// Lista as ocorrências cadastradas pelo usuário autenticado
+        /// </summary>
+        [HttpGet("minhas")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public async Task<IActionResult> ObterMinhas()
+        {
+            var usuarioId = User.ObterUsuarioId();
+
+            if (usuarioId == null)
+                return Unauthorized(new { message = "Token inválido" });
+
+            var resultado = await _ocorrenciaService.ObterMinhasAsync(usuarioId.Value);
+
+            return Ok(resultado);
+        }
+
+        /// <summary>
+        /// Lista todas as cidades disponíveis com ocorrências registradas
+        /// </summary>
+        [HttpGet("cidades")]
+        [AllowAnonymous]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> ListarCidades()
+        {
+            var cidades = await _ocorrenciaService.ListarCidadesDisponiveisAsync();
+
+            return Ok(cidades);
+        }
+
+        /// <summary>
+        /// Exclui uma ocorrência
+        /// </summary>
+        /// <remarks>Somente o proprietário da publicação pode excluí-la.</remarks>
+        [HttpDelete("{id:guid}")]
+        [Authorize]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> Excluir(Guid id)
+        {
+            var usuarioId = User.ObterUsuarioId();
+
+            if (usuarioId == null)
+                return Unauthorized(new { message = "Token inválido" });
+
+            await _ocorrenciaService.ExcluirAsync(id, usuarioId.Value);
+
+            _logger.LogInformation(
+                "Ocorrência {OcorrenciaId} excluída pelo usuário {UsuarioId}",
+                id,
+                usuarioId);
+
+            return NoContent();
+        }
+    
+    
     }
 }
