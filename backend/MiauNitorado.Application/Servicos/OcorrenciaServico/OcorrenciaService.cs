@@ -187,5 +187,27 @@ namespace MiauNitorado.Application.Servicos.OcorrenciaServico
 
         private static string? TextoOuNulo(string? valor) =>
             string.IsNullOrWhiteSpace(valor) ? null : valor.Trim();
+
+
+
+        public async Task ExcluirAsync(Guid id, int usuarioId)
+        {
+            var ocorrencia = await ObterOuFalharAsync(id);
+            ocorrencia.GarantirPropriedadeDe(usuarioId);
+
+            await _ocorrenciaRepository.ExcluirAsync(ocorrencia);
+        }
+
+        public async Task<IReadOnlyList<OcorrenciaResumo>> ObterMinhasAsync(int usuarioId)
+        {
+            var itens = await _ocorrenciaRepository.ObterPorUsuarioAsync(usuarioId);
+
+            return itens.Select(OcorrenciaMapper.ParaResumo).ToList();
+        }
+
+        public async Task<IReadOnlyList<string>> ListarCidadesDisponiveisAsync()
+        {
+            return await _ocorrenciaRepository.ListarCidadesDisponiveisAsync();
+        }
     }
 }
