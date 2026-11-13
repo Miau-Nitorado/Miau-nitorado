@@ -14,7 +14,7 @@ export default function EmptyState({ icon: Icon, title, message, action }: Empty
         <Icon size={36} />
       </div>
       <h3 className="text-lg font-bold text-gray-900 mb-1">{title}</h3>
-      <p className="text-sm text-gray-500 max-w-md mb-4">{message}</p>
+      <p className="text-sm text-gray-600 max-w-md mb-4">{message}</p>
       {action && (
         <button onClick={action.onClick} className="btn-primary">
           {action.label}
