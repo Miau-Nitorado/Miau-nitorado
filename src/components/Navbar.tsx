@@ -35,7 +35,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-gray-100">
-      <nav className="mx-auto max-w-7xl section-padding h-16 flex items-center justify-between">
+      <nav aria-label="Navegação principal" className="mx-auto max-w-7xl section-padding h-16 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 shrink-0" onClick={closeMobile}>
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-white">
@@ -67,6 +67,9 @@ export default function Navbar() {
             <div className="relative">
               <button
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
+                aria-expanded={userMenuOpen}
+                aria-haspopup="true"
+                aria-label="Menu da conta"
                 className="flex items-center gap-2 rounded-xl px-3 py-2 hover:bg-gray-100 transition-colors"
               >
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-teal-700 text-sm font-bold">
@@ -120,7 +123,9 @@ export default function Navbar() {
         <button
           className="lg:hidden text-gray-600 p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Abrir menu"
+          aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="menu-mobile"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -128,7 +133,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden border-t border-gray-100 bg-white animate-fade-in">
+        <div id="menu-mobile" className="lg:hidden border-t border-gray-100 bg-white animate-fade-in">
           <div className="px-4 py-4 space-y-1">
             <Link to="/" onClick={closeMobile} className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">Início</Link>
             <Link to="/animais-perdidos" onClick={closeMobile} className="block px-3 py-2 rounded-lg text-sm font-semibold text-gray-700 hover:bg-gray-50">Animais Perdidos</Link>
