@@ -1,90 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Poppins:wght@600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
-  html {
-    font-family: 'Nunito Sans', system-ui, sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, sans-serif;
-  }
+ html { font-family:'Nunito Sans',system-ui,sans-serif; scroll-behavior:smooth; }
+ body { min-width:320px; }
+ h1,h2,h3,h4,h5,h6 { font-family:'Poppins',system-ui,sans-serif; }
+ :focus-visible { outline:3px solid #0f766e; outline-offset:3px; }
+ @media (prefers-reduced-motion:reduce) { html {scroll-behavior:auto;} *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
 }
-
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white border border-gray-300 px-5 py-2.5 text-sm font-bold text-gray-700 shadow-sm transition-all hover:bg-gray-50 hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-danger {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-400;
-  }
-
-  .input-field {
-    @apply w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-900 transition-all placeholder:text-gray-400 focus:border-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-200;
-  }
-
-  .label-field {
-    @apply block text-sm font-semibold text-gray-700 mb-1.5;
-  }
-
-  .card {
-    @apply rounded-2xl border border-gray-100 bg-white shadow-sm;
-  }
-
-  .section-padding {
-    @apply px-4 sm:px-6 lg:px-8;
-  }
+ .skip-link { @apply fixed left-4 top-4 z-[200] -translate-y-20 rounded-lg bg-gray-900 px-4 py-3 font-bold text-white shadow-lg; }
+ .skip-link:focus { @apply translate-y-0; }
+ .btn-primary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-teal-700 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-teal-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed; }
+ .btn-secondary { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-white border border-gray-300 px-5 py-2.5 text-sm font-bold text-gray-800 shadow-sm transition-all hover:bg-gray-50 hover:border-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed; }
+ .btn-danger { @apply inline-flex items-center justify-center gap-2 rounded-xl bg-red-700 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed; }
+ .btn-ghost { @apply inline-flex items-center justify-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 transition-all hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-teal-600; }
+ .input-field { @apply w-full rounded-xl border border-gray-400 bg-white px-4 py-2.5 text-sm text-gray-900 transition-all placeholder:text-gray-500 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200; }
+ .label-field { @apply block text-sm font-semibold text-gray-800 mb-1.5; }
+ .card { @apply rounded-2xl border border-gray-200 bg-white shadow-sm; }
+ .section-padding { @apply px-4 sm:px-6 lg:px-8; }
 }
-
 @layer utilities {
-  .animate-slide-in {
-    animation: slide-in 0.3s ease-out;
-  }
+  /* Contrast overrides for legacy utility classes retained across existing pages. */
+  .text-teal-600 { color: #0f766e; }
+  .text-gray-500 { color: #4b5563; }
+  .text-red-600 { color: #b91c1c; }
+  .text-gray-400 { color: #4b5563; }
+  .bg-gray-900 .text-gray-600,
+  .bg-gray-900 .text-gray-400 { color: #d1d5db; }
 
-  .animate-fade-in {
-    animation: fade-in 0.4s ease-out;
-  }
-
-  .animate-scale-in {
-    animation: scale-in 0.2s ease-out;
-  }
+ .animate-slide-in { animation:slide-in .3s ease-out; }
+ .animate-fade-in { animation:fade-in .4s ease-out; }
+ .animate-scale-in { animation:scale-in .2s ease-out; }
 }
-
-@keyframes slide-in {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scale-in {
-  from {
-    transform: scale(0.95);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
+@keyframes slide-in {from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes fade-in {from{opacity:0}to{opacity:1}}
+@keyframes scale-in {from{transform:scale(.95);opacity:0}to{transform:scale(1);opacity:1}}

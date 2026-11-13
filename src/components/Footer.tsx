@@ -46,10 +46,10 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs text-gray-500">
+          <p className="text-xs text-gray-600">
             &copy; {new Date().getFullYear()} Miau-Nitorado — Projeto Acadêmico UNIVESP
           </p>
-          <p className="text-xs text-gray-500 flex items-center gap-1">
+          <p className="text-xs text-gray-600 flex items-center gap-1">
             Feito com <Heart size={12} className="text-teal-400 fill-teal-400" /> para ajudar animais
           </p>
         </div>

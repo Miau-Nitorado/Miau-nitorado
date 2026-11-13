@@ -26,7 +26,6 @@ import { useToast } from '@/context/ToastContext';
 import { formatDate } from '@/utils';
 import PhotoGallery from '@/components/PhotoGallery';
 import LocationCard from '@/components/LocationCard';
-import StatusBadge from '@/components/ui/StatusBadge';
 import Button from '@/components/ui/Button';
 import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import EmptyState from '@/components/EmptyState';

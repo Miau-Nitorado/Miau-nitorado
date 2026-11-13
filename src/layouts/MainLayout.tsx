@@ -1,13 +1,11 @@
 import type { ReactNode } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-
 export default function MainLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex min-h-screen flex-col bg-gray-50">
-      <Navbar />
-      <main className="flex-1">{children}</main>
-      <Footer />
-    </div>
-  );
+  return <div className="flex min-h-screen flex-col bg-gray-50">
+    <a className="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+    <Navbar />
+    <main id="conteudo-principal" tabIndex={-1} className="flex-1 outline-none">{children}</main>
+    <Footer />
+  </div>;
 }

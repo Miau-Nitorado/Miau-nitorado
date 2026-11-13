@@ -43,12 +43,12 @@ export default function LocationCard({ location, date, time }: LocationCardProps
 
       <div className="p-4 space-y-3">
         <div className="flex items-start gap-2">
-          <MapPin size={18} className="text-teal-600 mt-0.5 shrink-0" />
+          <MapPin size={18} className="text-teal-700 mt-0.5 shrink-0" />
           <div>
             <p className="text-sm font-bold text-gray-900">{location.city}</p>
-            <p className="text-sm text-gray-500">{location.neighborhood}</p>
+            <p className="text-sm text-gray-600">{location.neighborhood}</p>
             {location.reference && (
-              <p className="text-sm text-gray-500 mt-0.5">{location.reference}</p>
+              <p className="text-sm text-gray-600 mt-0.5">{location.reference}</p>
             )}
           </div>
         </div>

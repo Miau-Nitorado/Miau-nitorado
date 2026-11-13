@@ -38,7 +38,7 @@ export default function LoginPage() {
           <PawPrint size={28} />
         </div>
         <h1 className="text-2xl font-bold text-gray-900">Entrar</h1>
-        <p className="text-sm text-gray-500 mt-1">Acesse sua conta para gerenciar suas publicações</p>
+        <p className="text-sm text-gray-600 mt-1">Acesse sua conta para gerenciar suas publicações</p>
       </div>
 
       <form onSubmit={handleSubmit} className="card p-6 space-y-4">
@@ -70,9 +70,9 @@ export default function LoginPage() {
           <LogIn size={18} /> {loading ? 'Entrando...' : 'Entrar'}
         </Button>
 
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-600">
           Não tem conta?{' '}
-          <Link to="/cadastro" className="font-semibold text-teal-600 hover:text-teal-700">
+          <Link to="/cadastro" className="font-semibold text-teal-700 hover:text-teal-800">
             Criar conta
           </Link>
         </p>

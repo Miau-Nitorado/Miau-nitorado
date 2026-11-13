@@ -4,7 +4,6 @@ import {
   Search,
   PawPrint,
   HeartHandshake,
-  MapPin,
   Megaphone,
   Home as HomeIcon,
   PartyPopper,
@@ -83,7 +82,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl section-padding -mt-8 relative z-10">
         <div className="card p-5 sm:p-6">
           <h2 className="text-lg font-bold text-gray-900 mb-1">Procure por um animal</h2>
-          <p className="text-sm text-gray-500 mb-4">
+          <p className="text-sm text-gray-600 mb-4">
             Busque por nome, espécie, raça, cidade ou características.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
@@ -100,9 +99,9 @@ export default function HomePage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Ocorrências recentes</h2>
-            <p className="text-sm text-gray-500">Últimos animais cadastrados na plataforma</p>
+            <p className="text-sm text-gray-600">Últimos animais cadastrados na plataforma</p>
           </div>
-          <Link to="/animais-perdidos" className="hidden sm:flex items-center gap-1 text-sm font-semibold text-teal-600 hover:text-teal-700">
+          <Link to="/animais-perdidos" className="hidden sm:flex items-center gap-1 text-sm font-semibold text-teal-700 hover:text-teal-800">
             Ver todos <ArrowRight size={16} />
           </Link>
         </div>
@@ -142,7 +141,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl section-padding">
           <div className="text-center mb-10">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Como funciona</h2>
-            <p className="text-sm text-gray-500">Quatro passos simples para ajudar um animal</p>
+            <p className="text-sm text-gray-600">Quatro passos simples para ajudar um animal</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
@@ -152,11 +151,11 @@ export default function HomePage() {
               { icon: PartyPopper, title: '4. Registre o reencontro', desc: 'Quando o animal for localizado, atualize o status para encerrar a ocorrência.' },
             ].map((step, i) => (
               <div key={i} className="card p-6 text-center hover:shadow-md transition-shadow">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100 text-teal-600 mx-auto mb-4">
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100 text-teal-700 mx-auto mb-4">
                   <step.icon size={28} />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{step.desc}</p>
+                <p className="text-sm text-gray-600 leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>

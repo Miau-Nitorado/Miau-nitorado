@@ -27,7 +27,7 @@ export default function ConfirmDialog({
     <Modal open={open} onClose={onCancel} title={title}>
       <div className="flex flex-col items-center text-center gap-4">
         <div className={`flex h-14 w-14 items-center justify-center rounded-full ${variant === 'danger' ? 'bg-red-100' : 'bg-teal-100'}`}>
-          <AlertTriangle size={28} className={variant === 'danger' ? 'text-red-600' : 'text-teal-600'} />
+          <AlertTriangle size={28} className={variant === 'danger' ? 'text-red-600' : 'text-teal-700'} />
         </div>
         <p className="text-sm text-gray-600 leading-relaxed">{message}</p>
         <div className="flex gap-3 w-full mt-2">
