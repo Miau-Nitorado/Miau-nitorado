@@ -41,25 +41,25 @@ export default function AnimalCard({ occurrence }: AnimalCardProps) {
         <h3 className="text-base font-bold text-gray-900 truncate">
           {animal.name}
         </h3>
-        <p className="text-sm text-gray-500 truncate">
+        <p className="text-sm text-gray-600 truncate">
           {animal.species} • {animal.breed}
         </p>
 
-        <div className="flex items-center gap-1.5 text-sm text-gray-500">
-          <MapPin size={14} className="text-teal-600 shrink-0" />
+        <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <MapPin size={14} className="text-teal-700 shrink-0" />
           <span className="truncate">{location.city} / {location.neighborhood}</span>
         </div>
 
-        <div className="flex items-center gap-1.5 text-sm text-gray-500">
-          <Calendar size={14} className="text-teal-600 shrink-0" />
+        <div className="flex items-center gap-1.5 text-sm text-gray-600">
+          <Calendar size={14} className="text-teal-700 shrink-0" />
           <span>{formatDate(date)}</span>
         </div>
 
         <div className="flex items-center justify-between pt-2 border-t border-gray-50 mt-1">
-          <span className="text-sm font-semibold text-teal-600 group-hover:text-teal-700 transition-colors">
+          <span className="text-sm font-semibold text-teal-700 group-hover:text-teal-800 transition-colors">
             Ver detalhes
           </span>
-          <ChevronRight size={18} className="text-teal-600 group-hover:translate-x-0.5 transition-transform" />
+          <ChevronRight size={18} className="text-teal-700 group-hover:translate-x-0.5 transition-transform" />
         </div>
       </div>
     </Link>
