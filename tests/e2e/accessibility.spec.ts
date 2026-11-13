@@ -46,15 +46,17 @@ test('login form exposes labelled fields and accessible validation', async ({ pa
   await expect(page.getByRole('alert')).toContainText('Preencha e-mail e senha.');
 });
 
-test('public API routes respond without authentication', async ({ request, baseURL }) => {
+test('public API routes respond without authentication', async ({ request }) => {
+  test.skip(!process.env.API_BASE_URL, 'Configure API_BASE_URL para executar smoke tests da API.');
   const paths = ['/api/v1/ocorrencias', '/api/v1/ocorrencias/recentes', '/api/v1/ocorrencias/cidades'];
   for (const path of paths) {
-    const response = await request.get(new URL(path, baseURL).toString());
+    const response = await request.get(new URL(path, process.env.API_BASE_URL).toString());
     expect(response.status(), `Unexpected status for ${path}`).toBe(200);
   }
 });
 
-test('protected API routes reject anonymous requests', async ({ request, baseURL }) => {
-  const response = await request.get(new URL('/api/v1/ocorrencias/minhas', baseURL).toString());
+test('protected API routes reject anonymous requests', async ({ request }) => {
+  test.skip(!process.env.API_BASE_URL, 'Configure API_BASE_URL para executar smoke tests da API.');
+  const response = await request.get(new URL('/api/v1/ocorrencias/minhas', process.env.API_BASE_URL).toString());
   expect(response.status()).toBe(401);
 });
