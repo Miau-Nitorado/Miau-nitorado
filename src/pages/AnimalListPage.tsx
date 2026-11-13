@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PawPrint, SearchX, SlidersHorizontal } from 'lucide-react';
+import { SearchX } from 'lucide-react';
 import { useAnimalList } from '@/hooks/useAnimalList';
 import AnimalGrid from '@/components/AnimalGrid';
 import AnimalSearch from '@/components/AnimalSearch';
