@@ -27,7 +27,8 @@
   .text-gray-500 { color: #4b5563; }
   .text-red-600 { color: #b91c1c; }
   .text-gray-400 { color: #4b5563; }
-  .bg-gray-900 .text-gray-600 { color: #d1d5db; }
+  .bg-gray-900 .text-gray-600,
+  .bg-gray-900 .text-gray-400 { color: #d1d5db; }
 
  .animate-slide-in { animation:slide-in .3s ease-out; }
  .animate-fade-in { animation:fade-in .4s ease-out; }
