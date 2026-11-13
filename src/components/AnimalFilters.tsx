@@ -165,7 +165,6 @@ export default function AnimalFilters({ filters, onChange, cities }: AnimalFilte
               Ver resultados
             </button>
           </div>
-          </div>
         </div>
       )}
     </>
