@@ -26,6 +26,8 @@
   .text-teal-600 { color: #0f766e; }
   .text-gray-500 { color: #4b5563; }
   .text-red-600 { color: #b91c1c; }
+  .text-xs:not(.text-white) { color: #374151; }
+  .gap-1:not(.text-white) { color: #374151; }
 
  .animate-slide-in { animation:slide-in .3s ease-out; }
  .animate-fade-in { animation:fade-in .4s ease-out; }
