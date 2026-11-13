@@ -65,7 +65,7 @@ export default function RegisterPage() {
           <PawPrint size={28} />
         </div>
         <h1 className="text-2xl font-bold text-gray-900">Criar conta</h1>
-        <p className="text-sm text-gray-500 mt-1">Cadastre-se para publicar ocorrências</p>
+        <p className="text-sm text-gray-700 mt-1">Cadastre-se para publicar ocorrências</p>
       </div>
 
       <form onSubmit={handleSubmit} className="card p-6 space-y-4">
@@ -82,7 +82,7 @@ export default function RegisterPage() {
         <Input label="Senha" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mín. 8 caracteres" />
         <Input label="Confirmar senha" type="password" required value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Repita a senha" />
 
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-gray-700">
           A senha precisa ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula,
           número e um caractere especial (!@#$%^&amp;*).
         </p>
@@ -91,9 +91,9 @@ export default function RegisterPage() {
           <UserPlus size={18} /> {loading ? 'Criando...' : 'Criar conta'}
         </Button>
 
-        <p className="text-center text-sm text-gray-500">
+        <p className="text-center text-sm text-gray-700">
           Já tem conta?{' '}
-          <Link to="/login" className="font-semibold text-teal-600 hover:text-teal-700">
+          <Link to="/login" className="font-semibold text-teal-700 hover:text-teal-800">
             Entrar
           </Link>
         </p>
