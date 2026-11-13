@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-semibold transition-colors ${
-      isActive ? 'text-teal-600' : 'text-gray-600 hover:text-teal-600'
+      isActive ? 'text-teal-700' : 'text-gray-600 hover:text-teal-800'
     }`;
 
   const handleLogout = () => {
@@ -42,7 +42,7 @@ export default function Navbar() {
             <PawPrint size={22} />
           </div>
           <span className="text-lg font-extrabold text-gray-900 hidden sm:inline">
-            Miau<span className="text-teal-600">-Nitorado</span>
+            Miau<span className="text-teal-700">-Nitorado</span>
           </span>
         </Link>
 
