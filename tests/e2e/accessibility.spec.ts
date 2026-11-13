@@ -42,7 +42,7 @@ test('login form exposes labelled fields and accessible validation', async ({ pa
   await page.goto('/login');
   await expect(page.getByLabel('E-mail')).toBeVisible();
   await expect(page.getByLabel('Senha')).toBeVisible();
-  await page.getByRole('button', { name: 'Entrar' }).click();
+  await page.locator('form').getByRole('button', { name: 'Entrar' }).click();
   await expect(page.getByRole('alert')).toContainText('Preencha e-mail e senha.');
 });
 
