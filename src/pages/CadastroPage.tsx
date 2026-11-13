@@ -197,7 +197,7 @@ export default function CadastroPage() {
       {/* Voltar */}
       <button
         onClick={() => navigate(-1)}
-        className="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-teal-600 transition-colors mb-4"
+        className="flex items-center gap-1 text-sm font-semibold text-gray-600 hover:text-teal-800 transition-colors mb-4"
       >
         <ArrowLeft size={18} /> Voltar
       </button>
@@ -206,7 +206,7 @@ export default function CadastroPage() {
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">
           {id ? 'Editar publicação' : 'Cadastrar ocorrência'}
         </h1>
-        <p className="text-sm text-gray-500 mt-1">
+        <p className="text-sm text-gray-600 mt-1">
           {id ? 'Atualize as informações da publicação.' : `Preencha as informações sobre o ${typeLabel.toLowerCase()}.`}
         </p>
       </div>
@@ -217,7 +217,7 @@ export default function CadastroPage() {
           <button
             onClick={() => update('type', 'perdido')}
             className={`flex-1 rounded-xl py-2.5 text-sm font-bold transition-all ${
-              form.type === 'perdido' ? 'bg-white text-red-600 shadow-sm' : 'text-gray-500'
+              form.type === 'perdido' ? 'bg-white text-red-600 shadow-sm' : 'text-gray-600'
             }`}
           >
             <PawPrint size={16} className="inline mr-1" /> Animal Perdido
@@ -225,7 +225,7 @@ export default function CadastroPage() {
           <button
             onClick={() => update('type', 'encontrado')}
             className={`flex-1 rounded-xl py-2.5 text-sm font-bold transition-all ${
-              form.type === 'encontrado' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-500'
+              form.type === 'encontrado' ? 'bg-white text-amber-600 shadow-sm' : 'text-gray-600'
             }`}
           >
             <Check size={16} className="inline mr-1" /> Animal Encontrado
@@ -287,13 +287,13 @@ export default function CadastroPage() {
                 ))}
                 <button
                   onClick={handlePhotoUrl}
-                  className="flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:border-teal-400 hover:text-teal-600 transition-colors"
+                  className="flex h-24 w-24 flex-col items-center justify-center gap-1 rounded-xl border-2 border-dashed border-gray-300 text-gray-400 hover:border-teal-400 hover:text-teal-800 transition-colors"
                 >
                   <ImagePlus size={24} />
                   <span className="text-xs font-semibold">Adicionar</span>
                 </button>
               </div>
-              <p className="mt-1 text-xs text-gray-500">Adicione a URL de uma foto. Em uma versão futura, será possível fazer upload direto.</p>
+              <p className="mt-1 text-xs text-gray-600">Adicione a URL de uma foto. Em uma versão futura, será possível fazer upload direto.</p>
             </div>
 
             {form.type === 'perdido' && (
@@ -405,7 +405,7 @@ export default function CadastroPage() {
         {step === 4 && (
           <div className="space-y-4 animate-fade-in">
             <h2 className="text-lg font-bold text-gray-900">Contato</h2>
-            <p className="text-sm text-gray-500">Como as pessoas podem entrar em contato com você sobre esta ocorrência.</p>
+            <p className="text-sm text-gray-600">Como as pessoas podem entrar em contato com você sobre esta ocorrência.</p>
 
             <Input label="Nome para contato" required value={form.contactName} onChange={(e) => update('contactName', e.target.value)} error={errors.contactName} placeholder="Seu nome" />
 
@@ -430,7 +430,7 @@ export default function CadastroPage() {
         {step === 5 && (
           <div className="space-y-4 animate-fade-in">
             <h2 className="text-lg font-bold text-gray-900">Revisão da publicação</h2>
-            <p className="text-sm text-gray-500">Confira as informações antes de publicar.</p>
+            <p className="text-sm text-gray-600">Confira as informações antes de publicar.</p>
 
             {/* Prévia do card */}
             <div className="card overflow-hidden max-w-sm mx-auto">
@@ -448,9 +448,9 @@ export default function CadastroPage() {
               </div>
               <div className="p-4 space-y-1">
                 <h3 className="font-bold text-gray-900">{form.name || 'Sem identificação'}</h3>
-                <p className="text-sm text-gray-500">{form.species || '—'} • {form.breed || 'Não informada'}</p>
-                <p className="text-sm text-gray-500">{form.city || '—'} / {form.neighborhood || '—'}</p>
-                <p className="text-sm text-gray-500">{form.date || '—'}</p>
+                <p className="text-sm text-gray-600">{form.species || '—'} • {form.breed || 'Não informada'}</p>
+                <p className="text-sm text-gray-600">{form.city || '—'} / {form.neighborhood || '—'}</p>
+                <p className="text-sm text-gray-600">{form.date || '—'}</p>
               </div>
             </div>
 
@@ -509,7 +509,7 @@ export default function CadastroPage() {
 function ReviewItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-gray-50 px-3 py-2">
-      <span className="text-gray-500">{label}</span>
+      <span className="text-gray-600">{label}</span>
       <span className="font-semibold text-gray-900">{value || '—'}</span>
     </div>
   );
