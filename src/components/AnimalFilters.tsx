@@ -141,9 +141,12 @@ export default function AnimalFilters({ filters, onChange, cities }: AnimalFilte
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden" onClick={() => setMobileOpen(false)}>
-          <div id="filtros-mobile" role="dialog" aria-modal="true" aria-labelledby="titulo-filtros-mobile"
           <div className="absolute inset-0 bg-black/40 animate-fade-in" />
           <div
+            id="filtros-mobile"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="titulo-filtros-mobile"
             className="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-xl overflow-y-auto animate-slide-in p-5"
             onClick={(e) => e.stopPropagation()}
           >
