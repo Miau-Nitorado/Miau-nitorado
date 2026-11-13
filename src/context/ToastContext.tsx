@@ -41,6 +41,7 @@ function ToastContainer({ toasts, removeToast }: { toasts: Toast[]; removeToast:
       className="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-sm"
       role="region"
       aria-live="polite"
+      aria-relevant="additions"
       aria-label="Notificações"
     >
       {toasts.map((toast) => (
