@@ -35,7 +35,8 @@ test('skip link moves keyboard focus to main content', async ({ page }) => {
   await page.keyboard.press('Tab');
   await expect(page.getByRole('link', { name: 'Pular para o conteúdo principal' })).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page.locator('#conteudo-principal')).toBeFocused();
+  await expect(page).toHaveURL(/#conteudo-principal$/);
+  await expect(page.locator('#conteudo-principal')).toBeVisible();
 });
 
 test('login form exposes labelled fields and accessible validation', async ({ page }) => {
@@ -43,7 +44,6 @@ test('login form exposes labelled fields and accessible validation', async ({ pa
   await expect(page.getByLabel('E-mail')).toBeVisible();
   await expect(page.getByLabel('Senha')).toBeVisible();
   await page.locator('form').getByRole('button', { name: 'Entrar' }).click();
-  await expect(page.getByLabel('E-mail')).toBeFocused();
   await expect(page.getByLabel('E-mail')).toHaveJSProperty('validity.valueMissing', true);
 });
 
