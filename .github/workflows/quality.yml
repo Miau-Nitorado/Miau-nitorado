@@ -30,7 +30,7 @@ jobs:
       - name: Executar testes E2E, acessibilidade e API
         run: npx playwright test
         env:
-          BASE_URL: ${{ secrets.POC_BASE_URL }}
+          API_BASE_URL: https://miau-nitorado.up.railway.app
   backend:
     name: Backend — build .NET 10
     runs-on: ubuntu-latest
