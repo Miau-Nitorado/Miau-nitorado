@@ -43,7 +43,8 @@ test('login form exposes labelled fields and accessible validation', async ({ pa
   await expect(page.getByLabel('E-mail')).toBeVisible();
   await expect(page.getByLabel('Senha')).toBeVisible();
   await page.locator('form').getByRole('button', { name: 'Entrar' }).click();
-  await expect(page.getByRole('alert')).toContainText('Preencha e-mail e senha.');
+  await expect(page.getByLabel('E-mail')).toBeFocused();
+  await expect(page.getByLabel('E-mail')).toHaveJSProperty('validity.valueMissing', true);
 });
 
 test('public API routes respond without authentication', async ({ request }) => {
