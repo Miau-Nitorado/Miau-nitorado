@@ -33,10 +33,10 @@ export function statusLabel(status: string): string {
 
 export function statusColor(status: string): string {
   const map: Record<string, string> = {
-    perdido: 'bg-red-100 text-red-700 border-red-200',
-    encontrado: 'bg-amber-100 text-amber-700 border-amber-200',
-    localizado: 'bg-green-100 text-green-700 border-green-200',
-    encerrado: 'bg-gray-200 text-gray-600 border-gray-300',
+    perdido: 'bg-red-100 text-red-800 border-red-300',
+    encontrado: 'bg-amber-100 text-amber-800 border-amber-300',
+    localizado: 'bg-green-100 text-green-800 border-green-300',
+    encerrado: 'bg-gray-200 text-gray-700 border-gray-400',
   };
   return map[status] ?? 'bg-gray-100 text-gray-600 border-gray-200';
 }
