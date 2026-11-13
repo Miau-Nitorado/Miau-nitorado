@@ -22,6 +22,11 @@
  .section-padding { @apply px-4 sm:px-6 lg:px-8; }
 }
 @layer utilities {
+  /* Contrast overrides for legacy utility classes retained across existing pages. */
+  .text-teal-600 { color: #0f766e; }
+  .text-gray-500 { color: #4b5563; }
+  .text-red-600 { color: #b91c1c; }
+
  .animate-slide-in { animation:slide-in .3s ease-out; }
  .animate-fade-in { animation:fade-in .4s ease-out; }
  .animate-scale-in { animation:scale-in .2s ease-out; }
