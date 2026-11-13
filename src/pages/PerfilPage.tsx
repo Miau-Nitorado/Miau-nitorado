@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { User as UserIcon, Phone, Mail, Calendar, Save, LogOut } from 'lucide-react';
+import { Phone, Mail, Save, LogOut } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
 import { useToast } from '@/context/ToastContext';
-import { formatDateTime } from '@/utils';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 
