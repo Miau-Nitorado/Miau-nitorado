@@ -44,7 +44,7 @@ export default function AnimalListPage({ type, title, subtitle }: AnimalListPage
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">{title}</h1>
-        <p className="text-sm text-gray-500 mt-1">{subtitle}</p>
+        <p className="text-sm text-gray-600 mt-1">{subtitle}</p>
       </div>
 
       {/* Busca + ordenação */}
@@ -69,7 +69,7 @@ export default function AnimalListPage({ type, title, subtitle }: AnimalListPage
         {/* Resultados */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-4">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-600">
               {loading ? 'Carregando...' : `${filtered.length} ${filtered.length === 1 ? 'resultado' : 'resultados'}`}
             </p>
           </div>
