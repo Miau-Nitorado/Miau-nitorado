@@ -4,7 +4,6 @@ import {
   Search,
   PawPrint,
   HeartHandshake,
-  MapPin,
   Megaphone,
   Home as HomeIcon,
   PartyPopper,
